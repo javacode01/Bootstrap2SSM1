@@ -23,15 +23,15 @@
 		<!-- 生成DAO的包名和位置 -->
 		<javaClientGenerator targetPackage="com.sys.client" targetProject="src" type="XMLMAPPER" />
 		<!-- 需要生成代码的表名 -->
-		<table tableName="SYS_USERS" schema="BOOTSTRAP2SSM"></table>
-		<table tableName="SYS_ROLES" schema="BOOTSTRAP2SSM"></table>
-		<table tableName="SYS_FUNCTIONS" schema="BOOTSTRAP2SSM"></table>
-		<table tableName="SYS_ORGAN" schema="BOOTSTRAP2SSM"></table>
-		<table tableName="SYS_USER_ROLE" schema="BOOTSTRAP2SSM"></table>
-		<table tableName="SYS_ROLE_FUNCTION" schema="BOOTSTRAP2SSM"></table>
-		<table tableName="SYS_DICTIONARIES" schema="BOOTSTRAP2SSM"></table>
-		<table tableName="SYS_DICTIONARIES_ITEM" schema="BOOTSTRAP2SSM"></table>
-		<table tableName="SYS_ATTACHMENT" schema="BOOTSTRAP2SSM"></table>
-		<table tableName="SYS_QUARTZ_JOB" schema="BOOTSTRAP2SSM"></table>
+		<table tableName="SYS_USERS" schema="bootstrap2ssm"></table>
+		<table tableName="SYS_ROLES" schema="bootstrap2ssm"></table>
+		<table tableName="SYS_FUNCTIONS" schema="bootstrap2ssm"></table>
+		<table tableName="SYS_ORGAN" schema="bootstrap2ssm"></table>
+		<table tableName="SYS_USER_ROLE" schema="bootstrap2ssm"></table>
+		<table tableName="SYS_ROLE_FUNCTION" schema="bootstrap2ssm"></table>
+		<table tableName="SYS_DICTIONARIES" schema="bootstrap2ssm"></table>
+		<table tableName="SYS_DICTIONARIES_ITEM" schema="bootstrap2ssm"></table>
+		<table tableName="SYS_ATTACHMENT" schema="bootstrap2ssm"></table>
+		<table tableName="SYS_QUARTZ_JOB" schema="bootstrap2ssm"></table>
 	</context>
 </generatorConfiguration>
