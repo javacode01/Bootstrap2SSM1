@@ -2,10 +2,10 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 	<classPathEntry
-		location="E:\workspace\Bootstrap2SSM\WebContent\WEB-INF\lib\ojdbc6.jar" />
+		location="E:\eclipse-workspace\Bootstrap2SSM1\WebContent\WEB-INF\lib\mysql-connector-java-5.1.46.jar" />
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 		<!-- 这里引入扩展分页插件 -->
-		<plugin type="com.sys.generator.plugin.OraclePaginationPlugin" />
+		<plugin type="com.sys.generator.plugin.MysqlPaginationPlugin" />
 		<!-- 综合查询查询 -->
 		<plugin type="com.sys.generator.plugin.IntegratedQueryPlugin" />
 		<commentGenerator>
@@ -13,9 +13,9 @@
 			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
-		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-			connectionURL="jdbc:oracle:thin:@localhost:1521/ORCL" userId="BOOTSTRAP2SSM"
-			password="BOOTSTRAP2SSM" />
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/bootstrap2ssm" userId="root"
+			password="123456a?" />
 		<!-- 生成模型的包名和位置 -->
 		<javaModelGenerator targetPackage="com.sys.model" targetProject="src" />
 		<!-- 生成映射文件的包名和位置 -->

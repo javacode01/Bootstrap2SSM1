@@ -19,7 +19,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
  * @author wei 
  * @date 2011-11-30 下午08:36:11 
  */  
-public class OraclePaginationPlugin extends PluginAdapter {  
+public class MysqlPaginationPlugin extends PluginAdapter {  
   
     @Override  
     public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,  
