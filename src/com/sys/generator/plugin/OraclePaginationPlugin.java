@@ -35,25 +35,14 @@ public class OraclePaginationPlugin extends PluginAdapter {
             IntrospectedTable introspectedTable) {  
         XmlElement parentElement = document.getRootElement();  
   
-        // 产生分页语句前半部分  
-        XmlElement paginationPrefixElement = new XmlElement("sql");  
-        paginationPrefixElement.addAttribute(new Attribute("id",  
-                "OracleDialectPrefix"));  
-        XmlElement pageStart = new XmlElement("if");  
-        pageStart.addAttribute(new Attribute("test", "page != null"));  
-        pageStart.addElement(new TextElement(  
-                "select * from ( select row_.*, rownum rownum_ from ( "));  
-        paginationPrefixElement.addElement(pageStart);  
-        parentElement.addElement(paginationPrefixElement);  
-  
         // 产生分页语句后半部分  
         XmlElement paginationSuffixElement = new XmlElement("sql");  
         paginationSuffixElement.addAttribute(new Attribute("id",  
-                "OracleDialectSuffix"));  
+                "MysqlDialectSuffix"));  
         XmlElement pageEnd = new XmlElement("if");  
         pageEnd.addAttribute(new Attribute("test", "page != null"));  
         pageEnd.addElement(new TextElement(  
-                "<![CDATA[ ) row_   where rownum <= #{page.end} ) where rownum_ > #{page.begin} ]]>"));  
+                "<![CDATA[ limit #{page.begin},#{page.mysqlrows} ]]>"));  
         paginationSuffixElement.addElement(pageEnd);  
         parentElement.addElement(paginationSuffixElement);  
   
@@ -64,13 +53,9 @@ public class OraclePaginationPlugin extends PluginAdapter {
     public boolean sqlMapSelectByExampleWithoutBLOBsElementGenerated(  
             XmlElement element, IntrospectedTable introspectedTable) {  
   
-        XmlElement pageStart = new XmlElement("include"); //$NON-NLS-1$     
-        pageStart.addAttribute(new Attribute("refid", "OracleDialectPrefix"));  
-        element.getElements().add(0, pageStart);  
-  
         XmlElement isNotNullElement = new XmlElement("include"); //$NON-NLS-1$     
         isNotNullElement.addAttribute(new Attribute("refid",  
-                "OracleDialectSuffix"));  
+                "MysqlDialectSuffix"));  
         element.getElements().add(isNotNullElement);  
   
         return super.sqlMapUpdateByExampleWithoutBLOBsElementGenerated(element,  

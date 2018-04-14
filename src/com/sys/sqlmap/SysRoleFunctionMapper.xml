@@ -70,7 +70,6 @@
     ID, ROLE_CODE, FUNCTION_CODE, CREATE_TIME, CREATER
   </sql>
   <select id="selectByExample" parameterType="com.sys.model.SysRoleFunctionExample" resultMap="BaseResultMap">
-    <include refid="OracleDialectPrefix" />
     select
     <if test="distinct">
       distinct
@@ -83,7 +82,7 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    <include refid="OracleDialectSuffix" />
+    <include refid="MysqlDialectSuffix" />
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -210,14 +209,9 @@
       CREATER = #{creater,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <sql id="OracleDialectPrefix">
+  <sql id="MysqlDialectSuffix">
     <if test="page != null">
-      select * from ( select row_.*, rownum rownum_ from ( 
-    </if>
-  </sql>
-  <sql id="OracleDialectSuffix">
-    <if test="page != null">
-      <![CDATA[ ) row_   where rownum <= #{page.end} ) where rownum_ > #{page.begin} ]]>
+      <![CDATA[ limit #{page.begin},#{page.mysqlrows} ]]>
     </if>
   </sql>
   <!-- 获取所有资源权限关系 -->
@@ -226,12 +220,11 @@
          t1.function_code,
          t1.function_name,
          t1.function_url,
-         case when wm_concat(t0.role_code) is null then 'SUPERADMIN' 
-         else wm_concat(t0.role_code)||',SUPERADMIN' 
+         case when group_concat(t0.role_code) is null then 'SUPERADMIN' 
+         else group_concat(t0.role_code)||',SUPERADMIN' 
          end as authority_mark
-    from sys_role_function t0, sys_functions t1
-   where t0.function_code(+) = t1.function_code 
-   and t1.function_level = '3' and t1.function_url is not null
+    from sys_role_function t0 right join sys_functions t1 on t0.function_code = t1.function_code
+   where t1.function_level = '3' and t1.function_url is not null
    group by  t1.function_code,
          t1.function_name,
          t1.function_url

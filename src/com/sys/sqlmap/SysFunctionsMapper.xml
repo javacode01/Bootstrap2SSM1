@@ -81,7 +81,6 @@
     UPDATER
   </sql>
   <select id="selectByExample" parameterType="com.sys.model.SysFunctionsExample" resultMap="BaseResultMap">
-    <include refid="OracleDialectPrefix" />
     select
     <if test="distinct">
       distinct
@@ -94,7 +93,7 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
-    <include refid="OracleDialectSuffix" />
+    <include refid="MysqlDialectSuffix" />
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -353,14 +352,9 @@
       UPDATER = #{updater,jdbcType=VARCHAR}
     where FUNCTION_ID = #{functionId,jdbcType=VARCHAR}
   </update>
-  <sql id="OracleDialectPrefix">
+  <sql id="MysqlDialectSuffix">
     <if test="page != null">
-      select * from ( select row_.*, rownum rownum_ from ( 
-    </if>
-  </sql>
-  <sql id="OracleDialectSuffix">
-    <if test="page != null">
-      <![CDATA[ ) row_   where rownum <= #{page.end} ) where rownum_ > #{page.begin} ]]>
+      <![CDATA[ limit #{page.begin},#{page.mysqlrows} ]]>
     </if>
   </sql>
   <select id="getFunctionsByUserCode" parameterType="java.lang.String" resultMap="BaseResultMap">

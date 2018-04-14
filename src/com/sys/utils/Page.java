@@ -17,6 +17,8 @@ public class Page {
 	private int current;
 	// 总共页数
 	private int total;
+	//查询多少条记录（mysql查询时使用）
+	private int mysqlrows;
 
 	public Page() {
 	}
@@ -145,6 +147,14 @@ public class Page {
 	 */
 	public void setTotal(int total) {
 		this.total = total;
+	}
+
+	public int getMysqlrows() {
+		return end-begin;
+	}
+
+	public void setMysqlrows(int mysqlrows) {
+		this.mysqlrows = mysqlrows;
 	}
 
 }
